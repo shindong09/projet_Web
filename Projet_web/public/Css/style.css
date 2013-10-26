@@ -3,7 +3,7 @@ html,body{
   height: 100%; 
   width: 85%;
   margin:20px auto;
-  background: #FBF2EF;
+  background: whitesmoke;
   min-width: 960px;
 }
 h1,h2,h3{
@@ -18,6 +18,9 @@ header a{
   background-color: #fb4834;
   text-decoration: none;
   padding:5px;
+}
+header h1{
+  box-shadow: 8px 8px 12px #aaa;
 }
 
 /* ----------- Menu ---------------- */
