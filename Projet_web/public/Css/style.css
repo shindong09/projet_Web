@@ -20,7 +20,7 @@ header a{
   padding:5px;
 }
 header h1{
-  box-shadow: 8px 8px 12px #aaa;
+ 
 }
 
 /* ----------- Menu ---------------- */
@@ -69,6 +69,7 @@ header h1{
   text-align:center;
   /*pour avoir un effet "outset" avec IE :*/
   border-color:#DCDCDC #696969 #696969 #DCDCDC;
+  cursor:pointer;
  }
 /* ----------- Mosaique ---------------- */
 #grid{
