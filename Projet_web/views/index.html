@@ -177,13 +177,13 @@
 			</div>	
 		</footer>
 
-		<script src="http://localhost:8080/socket.io/socket.io.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
 		<script>
   
-		    var socket = io.connect('http://127.0.0.1:8080');
+		    var socket = io.connect(document.location.href);
 
 		    socket.on('news 0', function(json) {
-		      	//console.log("reussi");
+		      	console.log("reussi");
 		      	//console.log(json);
 		      	var h = $("<p></p>").text(json.title);
 		      	h.css("margin-left", "5px");

@@ -187,13 +187,6 @@ request('http://rss.lemonde.fr/c/205/f/3067/index.rss')
 //remove(rssMap, RssModel);
 //read(rssMap, RssModel);
 
-io.sockets.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
-});
-
 
 update(rssMap, RssModel);
 RssModel.find()
@@ -229,7 +222,7 @@ io.sockets.on('connection', function (socket) {
 
 
 
-var minutes = 1;
+var minutes = 15;
 setInterval(function() {
   update(rssMap, RssModel);
   remove(rssMap, RssModel);
