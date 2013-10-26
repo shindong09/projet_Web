@@ -1,6 +1,11 @@
 #########################    configuration de la vm    ######################################
 
+#Cliquer sur le bouton actualité ou politique ou économie etc.. pour charger les articles. 
+
+
 #mettre le reseau de la vm en accès par pont et autoriser les VMs dans le mode de promiscuité
+
+
 
 #lancer ces commandes
 
