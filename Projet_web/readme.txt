@@ -59,12 +59,10 @@ sudo node /opt/apps/projet_Web/Projet_Web/app.js
 sudo ifconfig
 #l'inet addr de eth0 est l'adresse de la vm, que l'on appelera url
 #Vous n'avez plus qu'à aller sur un navigateur et taper http://url:8080 
-
-#Si il y a des problème avec app.js il suffit de le relancer plusieurs fois pour que le problème 
-#se résolve de lui même (problème d'asynchronicité)
+#Sur la page d'acceuil qui doit être vide, il faut appuyer sur actualité du menu du haut pour lancer les scripts js ( problème d'asynchronicité car les requetes pour sauvegarder les news dans la base de donnée ne sont pas encore faites).
 
 #Si vous voulez mettre une nouvelle version du projet, vous avez a taper les prochaines lignes
-cd /opt/apps/proet_Web
+cd /opt/apps/projet_Web
 git reset --hard HEAD
 git clean -f
 git pull
