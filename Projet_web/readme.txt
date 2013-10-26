@@ -59,3 +59,6 @@ sudo node /opt/apps/projet_Web/Projet_Web/app.js
 sudo ifconfig
 #l'inet addr de eth0 est l'adresse de la vm, que l'on appelera url
 #Vous n'avez plus qu'à aller sur un navigateur et taper http://url:8080 
+
+#Si il y a des problème avec app.js il suffit de le relancer plusieurs fois pour que le problème 
+#se résolve de lui même (problème d'asynchronicité)

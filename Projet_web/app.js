@@ -204,8 +204,8 @@ RssModel.find()
           //io.sockets.emit("news "+cp, doc);
           news[i] = doc;
 
-          if(!intiate)
-            intiate = true;
+          if(!initiate)
+            initiate = true;
 
           console.log("initiate : %s %s", news[i].title, doc.topic);
           i++;
