@@ -34,7 +34,7 @@ nvm ls
 nvm install v0.8.12
 nvm alias default v0.8.12
 sudo vim ~/.bashrc
-#ajouter à la fin de ce fichier " . ~/.nvm/nvm.sh"
+#ajouter à la fin de ce fichier ". ~/.nvm/nvm.sh"
 
 #importer notre projet
 cd /opt/
@@ -62,6 +62,12 @@ sudo ifconfig
 
 #Si il y a des problème avec app.js il suffit de le relancer plusieurs fois pour que le problème 
 #se résolve de lui même (problème d'asynchronicité)
+
+#Si vous voulez mettre une nouvelle version du projet, vous avez a taper les prochaines lignes
+cd /opt/apps/proet_Web
+git reset --hard HEAD
+git clean -f
+git pull
 
 
 	##############   Explication sur les technologies utilisées ###########
