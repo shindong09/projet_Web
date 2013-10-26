@@ -15,15 +15,15 @@ module.exports.update = function(rssMap, rssModel)
       request(rssUrl)
       .pipe(new FeedParser())
       .on('error', function(error) {
-        console.error(error);
+        //console.error(error);
       })
       .on('meta', function (meta) {
-        console.log('===== %s =====', meta.title);
+        //console.log('===== %s =====', meta.title);
       })
       .on('readable', function () {
          var stream = this, item;
         while (item = stream.read()) {
-            if(cp < 10 && item .enclosures[0] != undefined)
+            if(cp < 20 && item .enclosures[0] != undefined)
             {
                 //console.log("item ###########= %s", sys.inspect(item.title));
                 date = new Date(Date.parse(item.pubDate));
@@ -46,12 +46,12 @@ module.exports.update = function(rssMap, rssModel)
                     if(!feed)
                     {
                       rssObject.save(function(err){
-                          if (err) { console.log(err); }
-                          else console.log('%s Item added :  %s', topic, rssObject.title);
+                          //if (err) { console.log(err); }
+                          //else console.log('%s Item added :  %s', topic, rssObject.title);
                       });
                     }
-                    else 
-                      console.log("%s existing : %s", topic, sys.inspect(feed.title));
+                    //else 
+                      //console.log("%s existing : %s", topic, sys.inspect(feed.title));
 
                   });
                 })(rssFeed);
@@ -90,8 +90,8 @@ module.exports.remove = function(rssMap, rssModel) {
    rssMap.forEach(function(rssUrl, topic) {
     rssModel.count({ 'topic': topic }, function (err, c)
       {
-          console.log('%s count = %d', topic, c);
-          if(c > 10)
+          //console.log('%s count = %d', topic, c);
+          if(c > 20)
           {
             /*
               rssModel.findOne({ 'topic': 'politique' }, function(error, query) {
@@ -110,14 +110,14 @@ module.exports.remove = function(rssMap, rssModel) {
             
             rssModel.find({ 'topic': topic })
               .sort({'date': 1})
-              .limit(c-10)
+              .limit(c-20)
               .exec(function(error, queries) {
                 if(error) {
                   console.log(error);
                 }
                 else if(queries) {
                   queries.forEach( function(doc) {
-                    console.log("%s last item removed : %s", topic, doc.title);
+                    //console.log("%s last item removed : %s", topic, doc.title);
                     doc.remove();
                   });
               }

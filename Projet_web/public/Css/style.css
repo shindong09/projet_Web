@@ -54,6 +54,19 @@ header a{
   /*pour avoir un effet "outset" avec IE :*/
   border-color:#DCDCDC #696969 #696969 #DCDCDC;
  }
+.m-nav ul li button {
+  display:block;
+  float:left;   
+  width:100px;
+  height:60px;
+  background-color:black;
+  color:white;
+  text-decoration:none;
+  padding:10px;
+  text-align:center;
+  /*pour avoir un effet "outset" avec IE :*/
+  border-color:#DCDCDC #696969 #696969 #DCDCDC;
+ }
 /* ----------- Mosaique ---------------- */
 #grid{
   width: 100%;
@@ -65,7 +78,7 @@ header a{
   padding:left:0;
 }
 .box {
-  background: linear-gradient(to right,  green, blue);
+  background: white;
   /*background-color: #c23822;*/
   /*opacity:0.9;*/
   box-shadow: 0px 0px 1px #222;
@@ -127,6 +140,20 @@ header a{
 .main_content .grid_3 {
   width: 220px;
 }
+
+.main_content .grid_3  ul li button {
+  display:block;
+  float:left;   
+  width:160px;
+  height:50px;
+  background-color:black;
+  color:white;
+  text-decoration:none;
+  padding:5px;
+  text-align:center;
+  /*pour avoir un effet "outset" avec IE :*/
+  border-color:#DCDCDC #696969 #696969 #DCDCDC;
+ }
 
 .main_content .grid_6 {
   width: 460px;
@@ -231,6 +258,39 @@ footer .about{
 footer .about h3{
   margin-top: 35px;
 }
+
+footer #about_us {
+  width:400px;
+}
+
+footer a{
+  color:white;
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+  float:left;
+  background-color: #fb4834;
+  text-decoration: none;
+  padding:5px;
+}
+
+footer div .spacing {
+  height:35px;
+}
+
+footer ul li button {
+  display:block;
+  float:left;   
+  width:100px;
+  height:30px;
+  background-color:black;
+  color:white;
+  text-decoration:none;
+  padding:5px;
+  text-align:center;
+  /*pour avoir un effet "outset" avec IE :*/
+  border-color:#DCDCDC #696969 #696969 #DCDCDC;
+ }
 
 
 /* ----------- Barre de seperation---------------- */

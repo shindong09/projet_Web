@@ -13,7 +13,10 @@ var sys = require('sys'),
     remove = require('./updateFeed').remove;
 
 var minutes = 15;
+var topicUser = "";
+var chosenTopic = false;
 
+io.set('log level', 1);
 
 mongoose.connect('mongodb://localhost/WebProject', function(err) {
   if (err) { throw err; }
@@ -85,109 +88,7 @@ app.get('/', function(req, res, next){
 });
 */
 console.log('Server running at http://localhost:8080/');
-/*
 
-rss1.on('article', function(a) {
-    socket.sockets.emit("hackernews","▸ "+linkify(a));
-    console.log(sys.inspect(a)+"\n");
-});
-rss2.on('article', function(a) {
-    socket.sockets.emit("lejournaldugeek","▸ "+linkify(a));
-    console.log(sys.inspect(a)+"\n");
-});
-rss3.on('article', function(a) {
-    socket.sockets.emit("reddit","▸ "+linkify(a));
-    console.log(sys.inspect(a)+"\n");
-});
-
-
-pollPoli.on("article", function(a) {
-    
-    io.sockets.emit("hackernews","▸ "+linkify(a));
-    console.log(sys.inspect(a)+"\n");
-    
-    var src = a.content.match(/src="([^\"]*)"/gim);
-    var image = src[0].replace(/src=|"/gim, "");
-    console.log(sys.inspect(image)+"\n")
-    
-    
-
-  var src = a.content.match(/src="([^\"]*)"/gim);
-  var image = src[0].replace(/src=|"/gim, "");
-  var rssSave = new RssModel({ topic: 'Politic', 
-                               content: a.content,
-                               title: a.title,
-                               link: a.link,
-                               img: image,
-
-  });
-
-
-  var rssSave.save(function (err) {
-    if (err) { throw err; }
-    console.log('rss ajouté avec succès !');
-    // On se déconnecte de MongoDB maintenant
-    //mongoose.connection.close();
-  });
-
-});
-
-*/
-
-//rss1.start('http://news.ycombinator.com/rss');
-//rss2.start('http://feeds.feedburner.com/LeJournalduGeek');
-//rss3.start('http://www.reddit.com/.rss');
-//pollPoli.start();
-//poll2.start();
-/*
-var parser = require('blindparser');
-parser.parseURL('http://rss.lemonde.fr/c/205/f/3067/index.rss', function(err, out){
-    console.log(out);
-});
-*/
-/*
-var res = "";
-
-request('http://rss.lemonde.fr/c/205/f/3067/index.rss', function (error, response, body) {
-  if (!error && response.statusCode == 200) {
-    parser.read(res);
-  
-    //console.log(res);
-  }
-})
-
-var parser = new htmlparser.Parser({
-    onopentag: function(name, attribs){
-        console.log(name);
-    },
-    ontext: function(text){
-    },
-    onclosetag: function(tagname){
-    }
-});
-*/
-//console.log(res);
-
-/*
-request('http://rss.lemonde.fr/c/205/f/3067/index.rss')
-  .pipe(new FeedParser())
-  .on('error', function(error) {
-    console.error(error);
-  })
-  .on('meta', function (meta) {
-    console.log('===== %s =====', meta.title);
-  })
-  .on('readable', function () {
-     var stream = this, item;
-    while (item = stream.read()) {
-      console.log('Got article: %s', sys.inspect(item.enclosures[0].url));
-    }
-  });
-*/
-
-//update(rssMap, RssModel);
-//remove(rssMap, RssModel);
-//read(rssMap, RssModel);
 var initiate = false;
 
 update(rssMap, RssModel);
@@ -195,13 +96,14 @@ RssModel.find()
     .sort({'date': -1})
     .limit(18)
     .exec(function(error, queries) {
+      var cp = 0;
       if(error) {
         console.log(error);
       }
       else if(queries) {
         var i = 0;
         queries.forEach( function(doc) {
-          //io.sockets.emit("news "+cp, doc);
+          io.sockets.emit("news "+cp, doc);
           news[i] = doc;
 
           if(!initiate)
@@ -213,25 +115,95 @@ RssModel.find()
       }
 });
 
+
 io.sockets.on('connection', function (socket) {
-  /*
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
-  */
+ 
+
+  socket.on('politique', function (socket) {
+
+    //console.log("politique");
+    topicUser = "politique";
+    chosenTopic = true;
+    emitNewsTopic(topicUser);
+
+  });  
+
+  socket.on('international', function (socket) {
+
+
+  topicUser = "international";
+  chosenTopic = true;
+  emitNewsTopic(topicUser);
+
+  }); 
+
+  socket.on('technologie', function (socket) {
+
+
+    topicUser = "technologie";
+    chosenTopic = true;
+    emitNewsTopic(topicUser);
+
+  }); 
+
+  socket.on('sport', function (socket) {
+
+
+    topicUser = "sport";
+    chosenTopic = true;
+    emitNewsTopic(topicUser);
+
+  }); 
+
+  socket.on('economie', function (socket) {
+
+
+    topicUser = "economie";
+    chosenTopic = true;
+    emitNewsTopic(topicUser);
+
+  });   
+
+  socket.on('actualite', function (socket) {
+
+
+    topicUser = "";
+    chosenTopic = false;
+    emitNewsNoTopic();
+
+  }); 
+  
+  
+  console.log("initiate");
+
   for(var i=0; i<18; i++){
     socket.emit('news '+i, news[i]);
-    console.log("send initiate news : "+news[i].title);
+    //console.log("send initiate news : "+news[i].title);
   }
 });
 
+emitNewsTopic = function(topic) {
+  RssModel.find({'topic': topic})
+    .sort({'date': -1})
+    .limit(18)
+    .exec(function(error, queries) {
+      if(error) {
+        console.log(error);
+      }
+      else if(queries) {
+        var cp = 0;
+        queries.forEach( function(doc) {
+          io.sockets.emit("news "+cp, doc);
+          if(initiate)
+           news[cp] = doc;
+          console.log("sending : %s %s", doc.title, doc.topic);
+          cp++;
+        });
+      }
+   });
+}
 
-
-setInterval(function() {
-  update(rssMap, RssModel);
-  remove(rssMap, RssModel);
-
+emitNewsNoTopic = function() {
   RssModel.find()
     .sort({'date': -1})
     .limit(18)
@@ -250,6 +222,16 @@ setInterval(function() {
         });
       }
    });
+}
 
+
+
+setInterval(function() {
+  update(rssMap, RssModel);
+  remove(rssMap, RssModel);
+  if(chosenTopic)
+    emitNewsTopic(topicUser);
+  else
+    emitNewsNoTopic();
 }, minutes*60*1000);
 

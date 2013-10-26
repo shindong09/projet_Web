@@ -15,17 +15,20 @@
 	<body>
 		
 		<header>
-			<a href="../html/index.html"><h1>THE VERGE</h1></a>
+			<a href=""><h1>DAT FLUX</h1></a>
 
 			<nav class="m-nav">
 
 				<ul>
+					<!--
 					<li ><a href="../html/log.html"><img class="log" src="../img/login.gif" title="Connection ou Inscription"></a></li>
-					
-					<li><a href="">Polique</a></li>
-					<li><a href="">Economie</a></li>
-					<li><a href="">High-Tech</a></li>
-					<li><a href="">Sports</a></li>
+				-->
+					<li><button class="actualite" type:"button">Actualite</button></li>
+					<li><button class="politique" type:"button">Politique</button></li>
+					<li><button class="international" type:"button">International</button></li>
+					<li><button class="economie" type:"button">Economie</button></li>
+					<li><button class="technologie" type:"button">High-Tech</button></li>
+					<li><button class="sport" type:"button">Sports</button></li>
 				</ul>			
 			</nav>
 		</header>
@@ -76,10 +79,12 @@
 			<div class="grid_3 beta">
 				<h3>Latest News</h3>
 				<ul class="latest-news">
-					<li><a href="">Polique</a></li>
-					<li><a href="">Economie</a></li>
-					<li><a href="">High-Tech</a></li>
-					<li><a href="">Sports</a></li>
+					<li><button class="actualite" type:"button">Actualite</button></li>
+					<li><button class="politique" type:"button">Politique</button></li>
+					<li><button class="international" type:"button">International</button></li>
+					<li><button class="economie" type:"button">Economie</button></li>
+					<li><button class="technologie" type:"button">High-Tech</button></li>
+					<li><button class="sport" type:"button">Sports</button></li>
 				</ul>
 			</div>
 			<div class="grid_9">
@@ -145,35 +150,27 @@
 
 			<div class="main_content">
 				<div class="grid_3">
-					<img src="../img/login.gif">
+					<div class="spacing">
+					</div> 
+					<a href=""><h1>DAT FLUX</h1></a>
 				</div>
-				<div class="grid_3 about">
+				<div id ="about_us" class="grid_3 about">
 					<h3>About Us</h3>
-					<p>dshfbsfhsbvhdjsvbdfhbsvfhbdqvlibvfsvlsdvqdbjlvflv
-						fdjkdsndsbdjkndvdjsjdvbfkdvbfjdsv
-						fdkndsvjvnfdskjvfdlsbsjvbdfhqbqhljbqs
-						fvdkbvdfqhdbhvbfhbdshqv
-						fdvbfdshjdbvfhjqdbjldf
+					<p>Ce site a été crée en collaboration par CHHORT Albert et SOMAWANSA Ravindu, 2 élèves de l'école d'ingénieur ESIEA en 5ième année dans le cadre d'un projet de conception Web. Ce site a été conçu sur la base d'un serveur Nginx avec une application server Node.js tourant dessus et une base de donnée NoSql MongoDB. De plus, nous avons ajouté les frameworks Express.js et Socket.io pour avoir un site complétement asynchrone et donc en temps réel. Ainsi les news de ce site se mettent à jour automatiquement toutes les 15 minutes sans avoir besoin de refraichir la page.
 					</p>
 				</div>
 				<div class="grid_3">
 					<ul class="categorie">
 						<h3>Categories</h3>
-						<li><a href="">Polique</a></li>
-						<li><a href="">Economie</a></li>
-						<li><a href="">High-Tech</a></li>
-						<li><a href="">Sports</a></li>
+						<li><button class="actualite" type:"button">Actualite</button></li>
+						<li><button class="politique" type:"button">Politique</button></li>
+						<li><button class="international" type:"button">International</button></li>
+						<li><button class="economie" type:"button">Economie</button></li>
+						<li><button class="technologie" type:"button">High-Tech</button></li>
+						<li><button class="sport" type:"button">Sports</button></li>
 					</ul>
 				</div>
-				<div class="grid_3">
-					<ul class="social-media">
-						<h3>Media Social</h3>
-						<li><a href="">Facebook  </a></li>
-						<li><a href="">Twitter  </a></li>
-						<li><a href="">Linkeldn  </a></li>
-						
-					</ul>
-				</div>
+				
 			</div>	
 		</footer>
 
@@ -181,6 +178,33 @@
 		<script>
   
 		    var socket = io.connect(document.location.href);
+
+		    $(".politique").on('click', function(){
+        		socket.emit('politique', {});
+        		//console.log("poli");
+    		});
+
+    		 $(".international").on('click', function(){
+        		socket.emit('international', {});
+        		//console.log("poli");
+    		});
+
+    		$(".technologie").on('click', function(){
+        		socket.emit('technologie', {});
+    		});
+
+    		$(".sport").on('click', function(){
+        		socket.emit('sport', {});
+    		});
+
+    		$(".economie").on('click', function(){
+        		socket.emit('economie', {});
+    		});
+
+    		$(".actualite").on('click', function(){
+        		socket.emit('actualite', {});
+    		});
+
 
 		    socket.on('news 0', function(json) {
 		      	console.log("reussi");
@@ -463,9 +487,11 @@
 		    
 		     
 		    socket.on("disconnect", function() {
-		    console.log("disconnected");
+		    	console.log("disconnected");
 		    });
 
+
+    		
 		</script>
 	</body>
 </html>
