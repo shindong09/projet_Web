@@ -36,15 +36,15 @@
 		<hr class="carved" />
 
 		<div id='grid'>
-			<div id = 'news0' class='box'></div>
-			<div id = 'news1' class='box'></div>
-			<div id = 'news2' class='box'></div>
-			<div id = 'news3' class='box'></div>
-			<div id = 'news4' class='box'></div>
-			<div id = 'news5' class='box'></div>
-			<div id = 'news6' class='box'></div>
-			<div id = 'news7' class='box'></div>
-			<div id = 'news8' class='box'></div>
+			<div id = 'news0' class='box link'></div>
+			<div id = 'news1' class='box link'></div>
+			<div id = 'news2' class='box link'></div>
+			<div id = 'news3' class='box link'></div>
+			<div id = 'news4' class='box link'></div>
+			<div id = 'news5' class='box link'></div>
+			<div id = 'news6' class='box link'></div>
+			<div id = 'news7' class='box link'></div>
+			<div id = 'news8' class='box link'></div>
 
 		</div>
 
@@ -54,21 +54,21 @@
 
 			<div class="grid_9">
 				<div id = "news9" class="grid_3 alpha">
-					<h3>Titre de l'article</h3>
+					<h3 class="link">Titre de l'article</h3>
 					<img src="http://placekitten.com/220/220" alt=""/>
 					<p>dsffjdsdjsvsjdvbdsjvbdsvbdshvds</br>
 						dkfslndsjvndfjkvnfsjkvnskjvnsjkvn</br>
 					</p>
 				</div>
 				<div id = "news10" class="grid_3">
-					<h3>Titre de l'article</h3>
+					<h3 class="link">Titre de l'article</h3>
 					<img src="http://placekitten.com/220/220" alt=""/>
 					<p>dsffjdsdjsvsjdvbdsjvbdsvbdshvds</br>
 						dkfslndsjvndfjkvnfsjkvnskjvnsjkvn</br>
 					</p>
 				</div>
 				<div id = "news11" class="grid_3 omega">
-					<h3>Titre de l'article</h3>
+					<h3 class="link">Titre de l'article</h3>
 					<img src="http://placekitten.com/220/220" alt=""/>
 					<p>dsffjdsdjsvsjdvbdsjvbdsvbdshvds</br>
 						dkfslndsjvndfjkvnfsjkvnskjvnsjkvn</br>
@@ -89,21 +89,21 @@
 			</div>
 			<div class="grid_9">
 				<div id = "news12" class="grid_3 alpha">
-					<h3>Titre de l'article</h3>
+					<h3 class="link">Titre de l'article</h3>
 					<img src="http://placekitten.com/220/220" alt=""/>
 					<p>dsffjdsdjsvsjdvbdsjvbdsvbdshvds</br>
 						dkfslndsjvndfjkvnfsjkvnskjvnsjkvnjbkjbfjkzbghgbfhbgfshjbdshfbsh</br>
 					</p>
 				</div>
 				<div id = "news13" class="grid_3">
-					<h3>Titre de l'article</h3>
+					<h3 class="link">Titre de l'article</h3>
 					<img src="http://placekitten.com/220/220" alt=""/>
 					<p>dsffjdsdjsvsjdvbdsjvbdsvbdshvds</br>
 						dkfslndsjvndfjkvnfsjkvnskjvnsjkvn</br>
 					</p>
 				</div>
 				<div id = "news14" class="grid_3 omega">
-					<h3>Titre de l'article</h3>
+					<h3 class="link">Titre de l'article</h3>
 					<img src="http://placekitten.com/220/220" alt=""/>
 					<p>dsffjdsdjsvsjdvbdsjvbdsvbdshvds</br>
 						dkfslndsjvndfjkvnfsjkvnskjvnsjkvn</br>
@@ -116,21 +116,21 @@
 			</div>
 			<div class="grid_9">
 				<div id = "news15" class="grid_3 alpha">
-					<h3>Titre de l'article</h3>
+					<h3 class="link">Titre de l'article</h3>
 					<img src="http://placekitten.com/220/220" alt=""/>
 					<p>dsffjdsdjsvsjdvbdsjvbdsvbdshvds</br>
 						dkfslndsjvndfjkvnfsjkvnskjvnsjkvn</br>
 					</p>
 				</div>
 				<div id = "news16" class="grid_3">
-					<h3>Titre de l'article</h3>
+					<h3 class="link">Titre de l'article</h3>
 					<img src="http://placekitten.com/220/220" alt=""/>
 					<p>dsffjdsdjsvsjdvbdsjvbdsvbdshvds</br>
 						dkfslndsjvndfjkvnfsjkvnskjvnsjkvn</br>
 					</p>
 				</div>
 				<div id = "news17" class="grid_3 omega">
-					<h3>Titre de l'article</h3>
+					<h3 class="link">Titre de l'article</h3>
 					<img src="http://placekitten.com/220/220" alt=""/>
 					<p>dsffjdsdjsvsjdvbdsjvbdsvbdshvds</br>
 						dkfslndsjvndfjkvnfsjkvnskjvnsjkvn</br>
@@ -210,12 +210,14 @@
 		      	console.log("reussi");
 		      	//console.log(json);
 		      	var h = $("<p></p>").text(json.title);
-		      	
 		      	h.css("font-weight", "bold");
 		      	h.css("color", "white");
-		  
+		      	var a = $("<a></a>", {
+		      		href: json.link,
+		      		style: "text-decoration:none"
+		      	}).append(h);
           		$("#news0").empty();
-          		$("#news0").append(h);
+          		$("#news0").append(a);
           		$("#news0").css("background-image", "url("+json.img+")"); 
 
           		 
@@ -225,12 +227,15 @@
 		      	//console.log("reussi");
 		      	//console.log(json);
 		      	var h = $("<p></p>").text(json.title);
-		      	
 		      	h.css("font-weight", "bold");
 		      	h.css("color", "white");
+		      	var a = $("<a></a>", {
+		      		href: json.link,
+		      		style: "text-decoration:none"
+		      	}).append(h);
 		  
           		$("#news1").empty();
-          		$("#news1").append(h);
+          		$("#news1").append(a);
           		$("#news1").css("background-image", "url("+json.img+")");  
 		      });
 
@@ -238,12 +243,15 @@
 		      	//console.log("reussi");
 		      	//console.log(json);
 		      	var h = $("<p></p>").text(json.title);
-		      	
 		      	h.css("font-weight", "bold");
 		      	h.css("color", "white");
+		      	var a = $("<a></a>", {
+		      		href: json.link,
+		      		style: "text-decoration:none"
+		      	}).append(h);
 		  
           		$("#news2").empty();
-          		$("#news2").append(h);
+          		$("#news2").append(a);
           		$("#news2").css("background-image", "url("+json.img+")");  
 		      });
 
@@ -251,12 +259,15 @@
 		      	//console.log("reussi");
 		      	//console.log(json);
 		      	var h = $("<p></p>").text(json.title);
-		      	
 		      	h.css("font-weight", "bold");
 		      	h.css("color", "white");
+		      	var a = $("<a></a>", {
+		      		href: json.link,
+		      		style: "text-decoration:none"
+		      	}).append(h);
 		  
           		$("#news3").empty();
-          		$("#news3").append(h);
+          		$("#news3").append(a);
           		$("#news3").css("background-image", "url("+json.img+")");  
 		      });
 
@@ -264,12 +275,15 @@
 		      	//console.log("reussi");
 		      	//console.log(json);
 		      	var h = $("<p></p>").text(json.title);
-		      	
 		      	h.css("font-weight", "bold");
 		      	h.css("color", "white");
+		      	var a = $("<a></a>", {
+		      		href: json.link,
+		      		style: "text-decoration:none"
+		      	}).append(h);
 		  
           		$("#news4").empty();
-          		$("#news4").append(h);
+          		$("#news4").append(a);
           		$("#news4").css("background-image", "url("+json.img+")");  
 		      });
 
@@ -277,25 +291,31 @@
 		      	//console.log("reussi");
 		      	//console.log(json);
 		      	var h = $("<p></p>").text(json.title);
-		      	
 		      	h.css("font-weight", "bold");
 		      	h.css("color", "white");
+		      	var a = $("<a></a>", {
+		      		href: json.link,
+		      		style: "text-decoration:none"
+		      	}).append(h);
 		  
           		$("#news5").empty();
-          		$("#news5").append(h);
+          		$("#news5").append(a);
           		$("#news5").css("background-image", "url("+json.img+")");  
 		      });
 
-		    socket.on('news 2', function(json) {
+		    socket.on('news 6', function(json) {
 		      	//console.log("reussi");
 		      	//console.log(json);
 		      	var h = $("<p></p>").text(json.title);
-		      	
 		      	h.css("font-weight", "bold");
 		      	h.css("color", "white");
+		      	var a = $("<a></a>", {
+		      		href: json.link,
+		      		style: "text-decoration:none"
+		      	}).append(h);
 		  
           		$("#news6").empty();
-          		$("#news6").append(h);
+          		$("#news6").append(a);
           		$("#news6").css("background-image", "url("+json.img+")");  
 		      });
 
@@ -303,12 +323,15 @@
 		      	//console.log("reussi");
 		      	//console.log(json);
 		      	var h = $("<p></p>").text(json.title);
-		      	
 		      	h.css("font-weight", "bold");
 		      	h.css("color", "white");
+		      	var a = $("<a></a>", {
+		      		href: json.link,
+		      		style: "text-decoration:none"
+		      	}).append(h);
 		  
           		$("#news7").empty();
-          		$("#news7").append(h);
+          		$("#news7").append(a);
           		$("#news7").css("background-image", "url("+json.img+")");  
 		      });
 
@@ -316,12 +339,15 @@
 		      	//console.log("reussi");
 		      	//console.log(json);
 		      	var h = $("<p></p>").text(json.title);
-		      	
 		      	h.css("font-weight", "bold");
 		      	h.css("color", "white");
+		      	var a = $("<a></a>", {
+		      		href: json.link,
+		      		style: "text-decoration:none"
+		      	}).append(h);
 		  
           		$("#news8").empty();
-          		$("#news8").append(h);
+          		$("#news8").append(a);
           		$("#news8").css("background-image", "url("+json.img+")");  
 		      });
 
@@ -332,9 +358,14 @@
 		      	//h.css("margin-left", "5px");
 		      	//h.css("font-weight", "bold");
 		      	//h.css("color", "white");
-		  
+		  		var a = $("<a></a>", {
+		      		href: json.link,
+		      		style: "text-decoration:none",
+		      		text: json.title
+		      	});
+		      	a.css("color", "black");
           		$("#news9 h3").empty();
-          		$("#news9 h3").append(json.title);
+          		$("#news9 h3").append(a);
           		$("#news9 img").attr("src", json.img);  
           		$("#news9 img").css("width", "100%");
           		$("#news9 img").css("height", "100%");
@@ -351,9 +382,14 @@
 		      	//h.css("margin-left", "5px");
 		      	//h.css("font-weight", "bold");
 		      	//h.css("color", "white");
-		  
+		  		var a = $("<a></a>", {
+		      		href: json.link,
+		      		style: "text-decoration:none",
+		      		text: json.title
+		      	});
+		      	a.css("color", "black");
           		$("#news10 h3").empty();
-          		$("#news10 h3").append(json.title);
+          		$("#news10 h3").append(a);
           		$("#news10 img").attr("src", json.img);  
           		$("#news10 img").css("width", "100%");
           		$("#news10 img").css("height", "100%");
@@ -368,9 +404,14 @@
 		      	//h.css("margin-left", "5px");
 		      	//h.css("font-weight", "bold");
 		      	//h.css("color", "white");
-		  
+		  		var a = $("<a></a>", {
+		      		href: json.link,
+		      		style: "text-decoration:none",
+		      		text: json.title
+		      	});
+		      	a.css("color", "black");
           		$("#news11 h3").empty();
-          		$("#news11 h3").append(json.title);
+          		$("#news11 h3").append(a);
           		$("#news11 img").attr("src", json.img);  
           		$("#news11 img").css("width", "100%");
           		$("#news11 img").css("height", "100%");
@@ -386,9 +427,14 @@
 		      	//h.css("margin-left", "5px");
 		      	//h.css("font-weight", "bold");
 		      	//h.css("color", "white");
-		  
+		  		var a = $("<a></a>", {
+		      		href: json.link,
+		      		style: "text-decoration:none",
+		      		text: json.title
+		      	});
+		      	a.css("color", "black");
           		$("#news12 h3").empty();
-          		$("#news12 h3").append(json.title);
+          		$("#news12 h3").append(a);
           		$("#news12 img").attr("src", json.img);  
           		$("#news12 img").css("width", "100%");
           		$("#news12 img").css("height", "100%");
@@ -404,9 +450,14 @@
 		      	//h.css("margin-left", "5px");
 		      	//h.css("font-weight", "bold");
 		      	//h.css("color", "white");
-		  
+		  		var a = $("<a></a>", {
+		      		href: json.link,
+		      		style: "text-decoration:none",
+		      		text: json.title
+		      	});
+		      	a.css("color", "black");
           		$("#news13 h3").empty();
-          		$("#news13 h3").append(json.title);
+          		$("#news13 h3").append(a);
           		$("#news13 img").attr("src", json.img);  
           		$("#news13 img").css("width", "100%");
           		$("#news13 img").css("height", "100%");
@@ -422,9 +473,14 @@
 		      	//h.css("margin-left", "5px");
 		      	//h.css("font-weight", "bold");
 		      	//h.css("color", "white");
-		  
+		  		var a = $("<a></a>", {
+		      		href: json.link,
+		      		style: "text-decoration:none",
+		      		text: json.title
+		      	});
+		      	a.css("color", "black");
           		$("#news14 h3").empty();
-          		$("#news14 h3").append(json.title);
+          		$("#news14 h3").append(a);
           		$("#news14 img").attr("src", json.img);  
           		$("#news14 img").css("width", "100%");
           		$("#news14 img").css("height", "100%");
@@ -439,10 +495,15 @@
 		      	//var h = json.title;
 		      	//h.css("margin-left", "5px");
 		      	//h.css("font-weight", "bold");
-		      	//h.css("color", "white");
-		  
+		      	//h.colorss("color", "white");
+		  		var a = $("<a></a>", {
+		      		href: json.link,
+		      		style: "text-decoration:none",
+		      		text: json.title
+		      	});
+		      	a.css("color", "black");
           		$("#news15 h3").empty();
-          		$("#news15 h3").append(json.title);
+          		$("#news15 h3").append(a);
           		$("#news15 img").attr("src", json.img);  
           		$("#news15 img").css("width", "100%");
           		$("#news15 img").css("height", "100%");
@@ -457,9 +518,14 @@
 		      	//h.css("margin-left", "5px");
 		      	//h.css("font-weight", "bold");
 		      	//h.css("color", "white");
-		  
+		  		var a = $("<a></a>", {
+		      		href: json.link,
+		      		style: "text-decoration:none",
+		      		text: json.title
+		      	});
+		      	a.css("color", "black");
           		$("#news16 h3").empty();
-          		$("#news16 h3").append(json.title);
+          		$("#news16 h3").append(a);
           		$("#news16 img").attr("src", json.img);  
           		$("#news16 img").css("width", "100%");
           		$("#news16 img").css("height", "100%");
@@ -474,9 +540,14 @@
 		      	//h.css("margin-left", "5px");
 		      	//h.css("font-weight", "bold");
 		      	//h.css("color", "white");
-		  
+		  		var a = $("<a></a>", {
+		      		href: json.link,
+		      		style: "text-decoration:none",
+		      		text: json.title
+		      	});
+		      	a.css("color", "black");
           		$("#news17 h3").empty();
-          		$("#news17 h3").append(json.title);
+          		$("#news17 h3").append(a);
           		$("#news17 img").attr("src", json.img);  
           		$("#news17 img").css("width", "100%");
           		$("#news17 img").css("height", "100%");

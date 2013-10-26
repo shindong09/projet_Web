@@ -96,6 +96,14 @@ header a{
   text-indent: 10px;
 }
 
+.link {
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
 
 #fillers{
   display: none;
