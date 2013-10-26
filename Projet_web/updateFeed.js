@@ -11,6 +11,7 @@ module.exports.update = function(rssMap, rssModel)
       var cp = 0;
       var date;
       var rssFeed;
+      var string;
       console.log("topic = "+topic);
       request(rssUrl)
       .pipe(new FeedParser())
@@ -27,12 +28,15 @@ module.exports.update = function(rssMap, rssModel)
             {
                 //console.log("item ###########= %s", sys.inspect(item.title));
                 date = new Date(Date.parse(item.pubDate));
+                string = item.description;
+                //string = item.description.replace(/<a\b[^>]*>(.*?)<\/a>/i,"");
+                //string = string.replace(/<img\b[^>]*>(.*?)<\/img>/i,"");
                 
                 rssFeed = new rssModel (
                       {
                         'title':item.title, 
                         'topic':topic,
-                        'content':item.description,
+                        'content':string,
                         'link': item.link,
                         'img': item.enclosures[0].url,
                         'date': date

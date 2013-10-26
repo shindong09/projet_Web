@@ -52,12 +52,19 @@ var rssSave.save(function (err) {
 var news = new Array();
 
 var rssMap = new HashMap();
+/*
 rssMap.set("politique", "http://rss.lemonde.fr/c/205/f/3067/index.rss");
 rssMap.set("technologie", "http://rss.lemonde.fr/c/205/f/3061/index.rss");
 rssMap.set("international", "http://rss.lemonde.fr/c/205/f/3052/index.rss");
 rssMap.set("sport", "http://rss.lemonde.fr/c/205/f/3058/index.rss");
 rssMap.set("economie", "http://rss.lemonde.fr/c/205/f/3055/index.rss");
+*/
 
+rssMap.set("politique", "http://www.lepoint.fr/politique/rss.xml");
+rssMap.set("technologie", "http://www.lepoint.fr/videos-high-tech/rss.xml");
+rssMap.set("international", "http://www.lepoint.fr/monde/rss.xml");
+rssMap.set("sport", "http://www.lepoint.fr/sport/rss.xml");
+rssMap.set("economie", "http://www.lepoint.fr/economie/rss.xml");
 
 
 
@@ -90,30 +97,6 @@ app.get('/', function(req, res, next){
 console.log('Server running at http://localhost:8080/');
 
 var initiate = false;
-
-update(rssMap, RssModel);
-RssModel.find()
-    .sort({'date': -1})
-    .limit(18)
-    .exec(function(error, queries) {
-      var cp = 0;
-      if(error) {
-        console.log(error);
-      }
-      else if(queries) {
-        var i = 0;
-        queries.forEach( function(doc) {
-          io.sockets.emit("news "+cp, doc);
-          news[i] = doc;
-
-          if(!initiate)
-            initiate = true;
-
-          console.log("initiate : %s %s", news[i].title, doc.topic);
-          i++;
-        });
-      }
-});
 
 
 io.sockets.on('connection', function (socket) {
@@ -174,6 +157,31 @@ io.sockets.on('connection', function (socket) {
   }); 
   
   
+  update(rssMap, RssModel);
+  RssModel.find()
+    .sort({'date': -1})
+    .limit(18)
+    .exec(function(error, queries) {
+      var cp = 0;
+      if(error) {
+        console.log(error);
+      }
+      else if(queries) {
+        var i = 0;
+        queries.forEach( function(doc) {
+          io.sockets.emit("news "+cp, doc);
+          news[i] = doc;
+
+          if(!initiate)
+            initiate = true;
+
+          console.log("initiate : %s %s", news[i].title, doc.topic);
+          i++;
+        });
+      }
+});
+
+
   console.log("initiate");
 
   for(var i=0; i<18; i++){

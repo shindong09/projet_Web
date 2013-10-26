@@ -77,3 +77,5 @@ git pull
 	Enfin nous avons décidé d'utiliser une base de donnée de type NoSQL MongoDB pour voir les avantages par rapport à des base de données type MySQL. 
 	De ce fait, ce projet a été un excellent moyen d'apprendre de nouvelles technologies intéressantes et en vogue. 
 
+	NB : tous les flux rss utilisés viennent de lepoint.fr
+
