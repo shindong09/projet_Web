@@ -12,6 +12,8 @@ var sys = require('sys'),
     update = require('./updateFeed').update,
     remove = require('./updateFeed').remove;
 
+var minutes = 15;
+
 
 mongoose.connect('mongodb://localhost/WebProject', function(err) {
   if (err) { throw err; }
@@ -186,7 +188,7 @@ request('http://rss.lemonde.fr/c/205/f/3067/index.rss')
 //update(rssMap, RssModel);
 //remove(rssMap, RssModel);
 //read(rssMap, RssModel);
-
+var initiate = false;
 
 update(rssMap, RssModel);
 RssModel.find()
@@ -201,6 +203,10 @@ RssModel.find()
         queries.forEach( function(doc) {
           //io.sockets.emit("news "+cp, doc);
           news[i] = doc;
+
+          if(!intiate)
+            intiate = true;
+
           console.log("initiate : %s %s", news[i].title, doc.topic);
           i++;
         });
@@ -222,7 +228,6 @@ io.sockets.on('connection', function (socket) {
 
 
 
-var minutes = 15;
 setInterval(function() {
   update(rssMap, RssModel);
   remove(rssMap, RssModel);
@@ -238,6 +243,7 @@ setInterval(function() {
         var cp = 0;
         queries.forEach( function(doc) {
           io.sockets.emit("news "+cp, doc);
+          if(initiate)
            news[cp] = doc;
           console.log("sending : %s %s", doc.title, doc.topic);
           cp++;
